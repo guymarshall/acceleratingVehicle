@@ -5,8 +5,7 @@ import java.util.Scanner;
 public class Main {
 
     public static double mpsToMph(double speedInMps) {
-        double speedInMph = speedInMps * 3600.0 / 1600.0;
-        return speedInMph;
+        return speedInMps * 3600.0 / 1600.0;
     }
 
     public static void main(String[] args) {
@@ -29,22 +28,18 @@ public class Main {
         int timeCounter = 1;
         boolean finished = false;
 
-        String outputString;
-
         while (!finished) {
             double airResistanceForce = ((airDensity * dragCoefficient * frontalArea) / 2) * Math.pow(velocity, 2);
             double deltaKE = deltaT * (inputPower - (airResistanceForce * velocity));
             double newVelocity = Math.sqrt(Math.pow(velocity, 2) + (2 * deltaKE / mass));
 
-            outputString = String.format("Time: %d seconds, Velocity: %f mph", timeCounter, mpsToMph(newVelocity));
-            System.out.println(outputString);
+            System.out.printf("Time: %d seconds, Velocity: %f mph%n", timeCounter, mpsToMph(newVelocity));
 
             if (newVelocity - velocity < 0.000001) {
                 finished = true;
             }
 
             velocity = newVelocity;
-
             timeCounter += deltaT;
         }
 
